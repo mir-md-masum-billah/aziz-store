@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --surface: 255 255 255; --accent: 4 120 87; --danger: 220 38 38; --warn: 180 83 9; --info: 3 105 161;
+    --s-50: 250 250 249; --s-100: 245 245 244; --s-200: 231 229 228; --s-300: 214 211 209; --s-400: 168 162 158; --s-500: 120 113 108;
+    --s-600: 87 83 78; --s-700: 68 64 60; --s-800: 41 37 36; --s-900: 28 25 23; --s-950: 12 10 9;
+    --e-50: 236 253 245; --e-100: 209 250 229; --e-200: 167 243 208; --e-300: 110 231 183;
+    --r-50: 254 242 242; --r-100: 254 226 226; --r-200: 254 202 202; --r-300: 252 165 165;
+    --a-50: 255 251 235; --a-100: 254 243 199; --a-200: 253 230 138; --a-300: 252 211 77;
+    --k-50: 240 249 255; --k-100: 224 242 254; --k-200: 186 230 253; --k-300: 125 211 252;
+  }
+  /* ডার্ক মোড: ধূসর স্কেল উল্টে যায়, হালকা রঙের ব্যাকগ্রাউন্ড গাঢ় হয়, টেক্সট-রঙ উজ্জ্বল হয় */
+  .dark {
+    color-scheme: dark;
+    --surface: 28 25 23; --accent: 52 211 153; --danger: 248 113 113; --warn: 251 191 36; --info: 56 189 248;
+    --s-50: 12 10 9; --s-100: 41 37 36; --s-200: 62 58 55; --s-300: 87 83 78; --s-400: 120 113 108; --s-500: 168 162 158;
+    --s-600: 214 211 209; --s-700: 231 229 228; --s-800: 245 245 244; --s-900: 250 250 249; --s-950: 255 255 255;
+    --e-50: 6 40 30; --e-100: 6 64 49; --e-200: 6 95 70; --e-300: 4 120 87;
+    --r-50: 48 18 18; --r-100: 69 20 20; --r-200: 127 29 29; --r-300: 153 27 27;
+    --a-50: 43 29 7; --a-100: 66 44 10; --a-200: 120 53 15; --a-300: 146 64 14;
+    --k-50: 11 34 51; --k-100: 12 53 80; --k-200: 7 89 133; --k-300: 3 105 161;
+  }
+}
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
+  body { @apply bg-stone-50 text-stone-800 antialiased min-h-screen; }
+  img { @apply max-w-full; }
+  ::selection { @apply bg-emerald-200; }
+  input[type='number']::-webkit-inner-spin-button { -webkit-appearance: none; }
+  input[type='file'] { @apply text-xs text-stone-500 w-full file:mr-3 file:rounded-lg file:border-0 file:bg-emerald-50 file:px-3 file:py-2 file:text-xs file:font-semibold file:text-accent hover:file:bg-emerald-100; }
+}
+
+@layer components {
+  /* বাটন */
+  .btn { @apply inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-800 active:scale-[.98] disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2; }
+  .btn-soft { @apply bg-stone-100 text-stone-700 shadow-none hover:bg-stone-200; }
+  .btn-brand-soft { @apply bg-emerald-50 text-accent shadow-none hover:bg-emerald-100; }
+  .btn-danger { @apply bg-red-600 hover:bg-red-700 focus-visible:ring-red-500; }
+  .btn-danger-soft { @apply bg-red-50 text-danger shadow-none hover:bg-red-100; }
+  .btn-sm { @apply rounded-lg px-3 py-1.5 text-xs; }
+  .btn-icon { @apply h-9 w-9 shrink-0 p-0; }
+  .btn2 { @apply btn btn-soft; }
+  .btnr { @apply btn btn-danger; }
+
+  /* ফর্ম */
+  .inp { @apply w-full rounded-xl border border-stone-200 bg-surface px-3.5 py-2.5 text-sm placeholder:text-stone-400 transition focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-100 disabled:bg-stone-100 disabled:text-stone-500; }
+  .lbl { @apply mb-1 block text-xs font-semibold text-stone-500; }
+
+  /* কার্ড ও লেআউট */
+  .card { @apply rounded-2xl border border-stone-200/70 bg-surface p-4 shadow-card sm:p-5; }
+  .card-hover { @apply transition hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-lg; }
+  .h1 { @apply text-xl font-bold tracking-tight text-stone-900 sm:text-2xl; }
+  .h2 { @apply text-base font-bold text-stone-900; }
+  .muted { @apply text-xs text-stone-500; }
+
+  /* ব্যাজ ও চিপ */
+  .badge { @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold; }
+  .chip { @apply inline-flex shrink-0 items-center gap-1 rounded-full border border-stone-200 bg-surface px-3.5 py-1.5 text-xs font-semibold text-stone-600 transition hover:border-emerald-300 hover:text-accent; }
+  .chip-on { @apply border-emerald-700 bg-emerald-700 text-white hover:border-emerald-700 hover:text-white; }
+  .chip-on-red { @apply border-red-600 bg-red-600 text-white hover:border-red-600 hover:text-white; }
+
+  /* টেবিল */
+  .tbl { @apply w-full text-sm; }
+  .tbl th { @apply whitespace-nowrap border-b border-stone-200 px-3 py-2.5 text-left text-xs font-semibold text-stone-500; }
+  .tbl td { @apply border-b border-stone-100 px-3 py-2.5 align-middle; }
+  .tbl tbody tr:hover { @apply bg-stone-50/70; }
+
+  .scroll-x { @apply -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0; scrollbar-width: none; }
+  .scroll-x::-webkit-scrollbar { display: none; }
+  .skel { @apply animate-pulse rounded-xl bg-stone-200/70; }
+}
